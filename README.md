@@ -1,0 +1,1 @@
+# razrabotka_web_prilozenia_dlya_stancii_tehnicheskogo_obsluzhivania
