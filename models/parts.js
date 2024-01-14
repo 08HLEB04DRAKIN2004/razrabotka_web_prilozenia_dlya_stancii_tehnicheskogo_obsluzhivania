@@ -10,6 +10,7 @@ const PartsShema = new mongoose.Schema(
             type: String,
             required: true,
         },
+        imageUrl: String,
         price: {
             type: Number,
             required: true,
