@@ -10,7 +10,7 @@ export const register = async (req, res) => {
         const hash = await bcrypt.hash(password, salt);
     
         const doc = new UserModel({
-            phoneNubmer: req.body.phoneNubmer,
+            phoneNumber: req.body.phoneNumber,
             userName: req.body.userName,
             role: req.body.role,
             passwordHash: hash,
@@ -42,7 +42,7 @@ export const register = async (req, res) => {
 
 export const login = async (req, res) => {
     try {
-        const user = await UserModel.findOne({ phoneNubmer: req.body.phoneNubmer });
+        const user = await UserModel.findOne({ phoneNumber: req.body.phoneNumber });
 
         if (!user) {
             return res.status(404).json({ message: 'User undefined' });
@@ -95,7 +95,7 @@ export const getUserById = async (req, res) => {
 
     let responseData = {
       _id: user._id,
-      phoneNubmer: user.emphoneNubmerail,
+      phoneNumber: user.phoneNumber,
       userName: user.userName,
       role: user.role,
     };

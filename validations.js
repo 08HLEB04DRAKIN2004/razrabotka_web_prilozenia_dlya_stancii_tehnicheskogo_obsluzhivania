@@ -2,12 +2,12 @@ import { body, param } from 'express-validator';
 
 //auth validation
 export const loginValidation = [
-    body('phoneNubmer', 'Invalid phone number format').notEmpty(),
+    body('phoneNumber', 'Invalid phone number format').notEmpty(),
     body('password', 'Password shoud be at least 5 symbols').isLength({ min: 8 }),
 ];
 
 export const registerValidation = [
-    body('phoneNubmer', 'Invalid phone number format').notEmpty(),
+    body('phoneNumber', 'Invalid phone number format').notEmpty(),
     body('password', 'Password should be at least 8 symbols').isLength({ min: 8 }),
     body('userName', 'Name is too short').isLength({ min: 2 }),
     body('role', 'Invalid role').custom((value) => {
