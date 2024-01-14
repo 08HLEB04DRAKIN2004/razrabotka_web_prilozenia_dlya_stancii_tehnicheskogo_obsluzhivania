@@ -76,7 +76,7 @@ export const getOne = async (req, res) => {
     try{
         const orderId = req.params.id;
 
-        const doc = await OrderModel.findById(orderId);
+        const doc = await OrderModel.findById(orderId).populate('user');;
 
         if (doc) {
             res.json(doc);
@@ -93,13 +93,13 @@ export const getOne = async (req, res) => {
 
 export const getAll = async (req, res) => {
     try {
-        const orders = await OrderModel.find();
+        const orders = await OrderModel.find().populate('user');
         
         res.json(orders);
     } catch(err) {
         console.log(err);
         res.status(500).json({
-            message: 'Failed to retrieve parts',
+            message: 'Failed to retrieve orders',
         });
     }
 };
