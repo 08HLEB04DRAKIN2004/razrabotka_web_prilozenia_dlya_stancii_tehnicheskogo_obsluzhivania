@@ -74,7 +74,7 @@ export const getOne = async (req, res) => {
     try {
         const serviceId = req.params.id;
 
-        const doc = await ServiceModel.findById(r);
+        await ServiceModel.findById(serviceId);
 
         if (doc) {
             res.json(doc);
