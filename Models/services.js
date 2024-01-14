@@ -13,7 +13,8 @@ const ServiceSchema = new mongoose.Schema(
         price: {
             type: Number,
             required: true,
-        }
+        },
+        imageUrl: String,
     },
     {
         timestamps: true,
