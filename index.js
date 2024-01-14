@@ -69,7 +69,7 @@ app.get('/auth/me', allRolesAuth, userController.getMe);
 
 //services
 app.post('/services/create', adminOnlyAuth, createServiceValidation, handleValidationErrors, servicesController.create);
-app.delete('/services/:id/delte', adminOnlyAuth, servicesController.remove);
+app.delete('/services/:id/delete', adminOnlyAuth, servicesController.remove);
 app.patch('/services/:id/update', adminOnlyAuth, updateServiceValidation, handleValidationErrors, servicesController.update);
 app.get('/services/:id', servicesController.getOne);
 app.get('/services', servicesController.getAll);
@@ -103,11 +103,9 @@ app.patch('/parts/:id/update',
     partsController.update
 );
 app.get('/parts/:id', 
-    allRolesAuth, 
     partsController.getOne
 );
 app.get('/parts', 
-    allRolesAuth,
     partsController.getAll
 );
 
@@ -155,11 +153,9 @@ app.patch('/employees/:id/update',
     employeeController.update
 );
 app.get('/employees/:id', 
-    allRolesAuth, 
     employeeController.getOne
 );
 app.get('/employees', 
-    adminOnlyAuth, 
     employeeController.getAll
 );
 

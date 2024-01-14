@@ -71,10 +71,10 @@ export const update = async (req, res) => {
 };
 
 export const getOne = async (req, res) => {
-    try {
+    try{
         const serviceId = req.params.id;
 
-        await ServiceModel.findById(serviceId);
+        const doc = await ServiceModel.findById(serviceId);
 
         if (doc) {
             res.json(doc);

@@ -4,7 +4,7 @@ export const create = async (req, res) => {
     try {
         const doc = new ReviewModel({
             user: req.userId,
-            order: req.params.id,
+            order: req.params.orderId,
             text: req.body.text,
             rating: req.body.rating,
         });
@@ -46,8 +46,6 @@ export const update = async (req, res) => {
                 _id: reviewId,
             },
             {
-                user: req.userId,
-                order: req.params.id,
                 text: req.body.text,
                 rating: req.body.rating,
             },

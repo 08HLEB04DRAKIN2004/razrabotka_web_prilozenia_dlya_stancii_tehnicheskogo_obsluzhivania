@@ -8,7 +8,6 @@ export const create = async (req, res) => {
             description: req.body.description,
             status: req.body.status,
             price: req.body.price,
-            date: req.body.date,
         });
 
         const order = await doc.save();
@@ -59,7 +58,6 @@ export const update = async (req, res) => {
                 description: req.body.description,
                 status: req.body.status,
                 price: req.body.price,
-                date: req.body.date,
             },
         );
 

@@ -23,10 +23,6 @@ const OrderShema = new mongoose.Schema(
         price: {
             type: Number,
         },
-        date: {
-            type: Date,
-            required: true,
-        },
     },
     {
         timestamps: true,
