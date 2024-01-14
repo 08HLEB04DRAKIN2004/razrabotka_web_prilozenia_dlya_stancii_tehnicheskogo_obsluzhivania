@@ -17,10 +17,11 @@ import logo from '../../src/media/logo.png';
 import avatart from '../../src/media/avatar.png';
 
 const pages = [
-    // { title: 'Категории', path: '/' },
-    // { title: 'О нас', path: '/about' },
-    // { title: 'Корзина', path: '/cart' },
-    // { title: 'Заказы', path: '/orders', adminOnly: true },
+    { title: 'Главная', path: '/' },
+    { title: 'Услуги', path: '/services' },
+    { title: 'Мастера', path: '/employees' },
+    { title: 'Запчасти', path: '/parts' },
+    { title: 'Заказы', path: '/orders', adminOnly: true },
     // { title: 'Управление категориями', path: '/categories', adminOnly: true },
 ];
 
@@ -57,10 +58,13 @@ function Header() {
     };
 
     return (
-        <AppBar position="static" sx={{ backgroundColor: '#9ae6c0' }}>
+        <AppBar position="static" sx={{ backgroundColor: '#aaaa' }}>
             <Container maxWidth="xl">
                 <Toolbar disableGutters>
-                    <img src={logo} alt="Logo" style={{ marginRight: '10px', height: '30px' }} />
+                    <Link to='/'>
+                        <img src={logo} alt="Logo" style={{ marginRight: '10px', height: '100px' }} />
+                    </Link>
+
                     <Typography
                         variant="h6"
                         noWrap
@@ -70,12 +74,12 @@ function Header() {
                             display: { xs: 'none', md: 'flex' },
                             fontFamily: 'monospace',
                             fontWeight: 700,
-                            letterSpacing: '.3rem',
+                            letterSpacing: '.1rem',
                             color: 'inherit',
                             textDecoration: 'none',
                         }}
                     >
-                        АВТОСЕРВИС
+                        АВТОСЕРВИС ГЛЕБА
                     </Typography>
 
                     <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>

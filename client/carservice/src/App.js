@@ -9,6 +9,11 @@ import './App.css';
 import LoginPage from './components/login';
 import RegistrationPage from './components/register';
 import Header from './components/header';
+import HomePage from './components/homepage';
+import ServicesPage from './components/services';
+import EmployeesPage from './components/employee';
+import PartsPage from './components/parts';
+import OrdersPage from './components/orders';
 
 function App() {
   const dispatch = useDispatch();
@@ -27,6 +32,11 @@ function App() {
         <Header />
         <Box component="main" flexGrow={1} sx={{ width: '100%' }}>
           <Routes>
+              <Route path='/' element={<HomePage></HomePage>} />
+              <Route path='/services' element={<ServicesPage></ServicesPage>} />
+              <Route path='/employees' element={<EmployeesPage></EmployeesPage>} />
+              <Route path='/parts' element={<PartsPage></PartsPage>} />
+              <Route path='/orders' element={<OrdersPage></OrdersPage>} />
               {!isAuth && <Route path='/registration' element={<RegistrationPage/>} />}
               {!isAuth && <Route path='/login' element={<LoginPage/>} />}
               {isAuth && <Route path="*" element={<Navigate to="/" />} />}
