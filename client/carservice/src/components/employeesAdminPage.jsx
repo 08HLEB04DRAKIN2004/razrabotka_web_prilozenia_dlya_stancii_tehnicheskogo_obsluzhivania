@@ -33,9 +33,7 @@ const EmployeesAdminPage = () => {
 
     const handleOpenCreateDialog = () => {
         setOpenCreateDialog(true);
-    };
-
-    const handleCloseCreateDialog = () => {
+    }; const handleCloseCreateDialog = () => {
         setOpenCreateDialog(false);
         setNewEmployee({ name: '', position: '', specialization: '', imageUrl: '' });
     };
@@ -77,22 +75,23 @@ const EmployeesAdminPage = () => {
             const uploadedImageData = await uploadImage(formData);
             if (uploadedImageData && uploadedImageData.url) {
                 employeeData = { ...employeeData, imageUrl: `${window.location.protocol}//localhost:4444${uploadedImageData.url}` };
-            } if (isCreate) {
-                dispatch(createEmployee(employeeData));
-                handleCloseCreateDialog();
-            } else {
-                dispatch(updateEmployee({ id: currentEmployee._id, updatedData: employeeData }));
-                handleCloseEditDialog();
             }
-            setImageFile(null); // Reset the image file after handling
-        };
+        }
+
+        if (isCreate) {
+            dispatch(createEmployee(employeeData));
+            handleCloseCreateDialog();
+        } else {
+            dispatch(updateEmployee({ id: currentEmployee._id, updatedData: employeeData }));
+            handleCloseEditDialog();
+        }
+        setImageFile(null); // Reset the image file after handling
     };
 
     return (
         <div>
             <Typography variant="h4" gutterBottom>Employee Management</Typography>
-            <Button color="primary" onClick={handleOpenCreateDialog}>Add Employee</Button>
-            <Grid container spacing={3}>
+            <Button color="primary" onClick={handleOpenCreateDialog}>Add Employee</Button>        <Grid container spacing={3}>
                 {employees.map(employee => (
                     <Grid item key={employee._id} xs={12} sm={6} md={4}>
                         <Card>
@@ -192,7 +191,8 @@ const EmployeesAdminPage = () => {
                         margin="dense"
                         name="specialization"
                         label="Specialization"
-                        type="text"
+                        type
+                        ="text"
                         fullWidth
                         variant="standard"
                         value={currentEmployee?.specialization}

@@ -20,6 +20,8 @@ import ServicesAdminPage from './components/adminServicePage';
 import AdminPartsPage from './components/adminPartsPage';
 import EmployeesAdminPage from './components/employeesAdminPage';
 import AdminPage from './components/adminPage';
+import UserProfile from './components/userProfile';
+import AllReviewsPage from './components/reviewsPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -48,6 +50,8 @@ function App() {
               <Route path='/adminka1' element={<AdminPartsPage/>} />
               <Route path='/adminka2' element={<EmployeesAdminPage/>} />
               <Route path='/admin-page' element={<AdminPage/>} />
+              <Route path='/profile' element={<UserProfile/>} />
+              <Route path='/reviews' element={<AllReviewsPage/>} />
               {!isAuth && <Route path='/registration' element={<RegistrationPage/>} />}
               {!isAuth && <Route path='/login' element={<LoginPage/>} />}
               {isAuth && <Route path="*" element={<Navigate to="/" />} />}

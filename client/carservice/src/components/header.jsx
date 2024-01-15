@@ -21,7 +21,8 @@ const pages = [
     { title: 'Услуги', path: '/services' },
     { title: 'Мастера', path: '/employees' },
     { title: 'Запчасти', path: '/parts' },
-    { title: 'Оставить заявку', path: '/order-creating'},
+    { title: 'Оставить заявку', path: '/order-creating' },
+    { title: 'Отзывы', path: '/reviews' },
     { title: 'Заказы', path: '/orders', adminOnly: true },
     // { title: 'Админка услуги', path: '/adminka', adminOnly: true },
     // { title: 'Админка запчасти', path: '/adminka1', adminOnly: true },
@@ -160,6 +161,11 @@ function Header() {
                                 open={Boolean(anchorElUser)}
                                 onClose={handleCloseUserMenu}
                             >
+                                <MenuItem>
+                                    <Link to='/profile'>
+                                        Профиль
+                                    </Link>
+                                </MenuItem>
                                 <MenuItem>
                                     <Typography onClick={onClickLogout}>
                                         Выйти

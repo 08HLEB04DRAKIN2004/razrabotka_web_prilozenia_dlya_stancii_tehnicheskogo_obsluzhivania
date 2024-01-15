@@ -64,7 +64,8 @@ export const update = async (req, res) => {
 
 export const getAllReviews = async (req, res) => {
     try {
-        const reviews = await ReviewModel.find(); // Извлекаем все отзывы
+        // Fetch all reviews and populate the 'order' field
+        const reviews = await ReviewModel.find().populate('order');
         res.json(reviews);
     } catch (error) {
         console.error('Error in fetching reviews:', error);

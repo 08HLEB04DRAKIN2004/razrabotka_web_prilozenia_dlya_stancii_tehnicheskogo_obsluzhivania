@@ -58,7 +58,9 @@ const AdminPartsPage = () => {
             console.error('Error uploading file:', error);
             return null;
         }
-    }; const handleCreateOrUpdatePart = async (isCreate) => {
+    }; 
+    
+    const handleCreateOrUpdatePart = async (isCreate) => {
         let partData = isCreate ? newPart : currentPart;
 
         if (imageFile) {
@@ -164,7 +166,8 @@ const AdminPartsPage = () => {
                     <Button onClick={handleCloseCreateDialog}>Cancel</Button>
                     <Button onClick={() => handleCreateOrUpdatePart(true)}>Create</Button>
                 </DialogActions>
-            </Dialog>{/* Dialog for Editing a Part */}
+            </Dialog>
+            {/* Dialog for Editing a Part */}
             <Dialog open={openEditDialog} onClose={handleCloseEditDialog}>
                 <DialogTitle>Edit Part</DialogTitle>
                 <DialogContent>

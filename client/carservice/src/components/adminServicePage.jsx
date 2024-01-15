@@ -13,43 +13,6 @@ const ServicesAdminPage = () => {
     const [newService, setNewService] = useState({ name: '', description: '', price: '', imageUrl: '', });
     const [imageFile, setImageFile] = useState(null);
 
-    const handleFileChange = (event) => {
-        setImageFile(event.target.files[0]);
-    };
-
-    const uploadImage = async (formData) => {
-        try {
-            const response = await axios.post('/upload', formData, {
-                headers: {
-                    'Content-Type': 'multipart/form-data'
-                }
-            });
-            return response.data;
-        } catch (error) {
-            console.error('Ошибка при загрузке файла:', error);
-            return null;
-        }
-    };
-
-    const handleCreate = async () => {
-        if (imageFile) {
-            const formData = new FormData();
-            formData.append('image', imageFile);
-
-            const uploadedImageData = await uploadImage(formData);
-            if (uploadedImageData && uploadedImageData.url) {
-                const fullImageUrl = `${window.location.protocol}//localhost:4444${uploadedImageData.url}`;
-                const serviceWithImage = { ...newService, imageUrl: fullImageUrl };
-                dispatch(createService(serviceWithImage));
-            }
-        } else {
-            dispatch(createService(newService));
-        }
-
-        handleCloseCreateDialog();
-    };
-
-
     useEffect(() => {
         dispatch(fetchServices());
     }, [dispatch]);
@@ -68,13 +31,6 @@ const ServicesAdminPage = () => {
         dispatch(deleteService(id));
     };
 
-    const handleUpdate = () => {
-        if (currentService) {
-            dispatch(updateService({ id: currentService._id, updatedData: currentService }));
-            handleCloseEditDialog();
-        }
-    };
-
     const handleChange = (e) => {
         setCurrentService({ ...currentService, [e.target.name]: e.target.value });
     };
@@ -85,11 +41,50 @@ const ServicesAdminPage = () => {
 
     const handleCloseCreateDialog = () => {
         setOpenCreateDialog(false);
-        setNewService({ name: '', description: '', price: '' });
+        setNewService({ name: '', description: '', price: '', imageUrl: '' });
     };
 
     const handleNewServiceChange = (e) => {
         setNewService({ ...newService, [e.target.name]: e.target.value });
+    };
+
+    const handleFileChange = (event) => {
+        setImageFile(event.target.files[0]);
+    };
+
+    const uploadImage = async (formData) => {
+        try {
+            const response = await axios.post('/upload', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Ошибка при загрузке файла:', error);
+            return null;
+        }
+    };
+
+    const handleCreateOrUpdateService = async (isCreate) => {
+        let serviceData = isCreate ? newService : currentService;
+
+        if (imageFile) {
+            const formData = new FormData();
+            formData.append('image', imageFile);
+            const uploadedImageData = await uploadImage(formData);
+            if (uploadedImageData && uploadedImageData.url) {
+                serviceData = { ...serviceData, imageUrl: `${window.location.protocol}//localhost:4444${uploadedImageData.url}` };
+            }
+        }
+
+        if (isCreate) {
+            dispatch(createService(serviceData));
+            handleCloseCreateDialog();
+        } else {
+            dispatch(updateService({ id: currentService._id, updatedData: serviceData }));
+            handleCloseEditDialog();
+        }
     };
 
     return (
@@ -110,8 +105,8 @@ const ServicesAdminPage = () => {
                                 <Typography variant="h5">{service.name}</Typography>
                                 <Typography variant="body1">{`Price: $${service.price}`}</Typography>
                                 <Typography variant="body2">{service.description}</Typography>
-                                <Button color="primary" onClick={() => handleOpenEditDialog(service)}>изменить</Button>
-                                <Button color="secondary" onClick={() => handleDelete(service._id)}>удалить</Button>
+                                <Button color="primary" onClick={() => handleOpenEditDialog(service)}>Изменить</Button>
+                                <Button color="secondary" onClick={() => handleDelete(service._id)}>Удалить</Button>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -152,14 +147,22 @@ const ServicesAdminPage = () => {
                         value={currentService?.price}
                         onChange={handleChange}
                     />
+                    <TextField
+                        type="file"
+                        margin="dense"
+                        fullWidth
+                        variant="standard"
+                        onChange={handleFileChange}
+                    />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseEditDialog}>Cancel</Button>
-                    <Button onClick={handleUpdate}>Save</Button>
+                    <Button onClick={handleCloseEditDialog}>Отмена</Button>
+                    <Button onClick={() => handleCreateOrUpdateService(false)}>Сохранить</Button>
                 </DialogActions>
             </Dialog>
+
             <Dialog open={openCreateDialog} onClose={handleCloseCreateDialog}>
-                <DialogTitle>Create New Service</DialogTitle>
+                <DialogTitle>Добавить новый сервис</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
@@ -201,12 +204,12 @@ const ServicesAdminPage = () => {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseCreateDialog}>Cancel</Button>
-                    <Button onClick={handleCreate}>Create</Button>
+                    <Button onClick={handleCloseCreateDialog}>Отмена</Button>
+                    <Button onClick={() => handleCreateOrUpdateService(true)}>Создать</Button>
                 </DialogActions>
             </Dialog>
         </div>
     );
 };
 
-export default ServicesAdminPage;
+export default ServicesAdminPage;                
