@@ -51,7 +51,7 @@ export const createPartValidation = [
     body('name', 'Product name is required').notEmpty(),
     body('description', 'Product description is required').notEmpty(),
     body('price', 'Product price must be a number').isNumeric(),
-    body('imageUrl', 'Invalid URL format for image').optional().isURL(),
+    body('imageUrl', 'Invalid URL format for image').optional(),
     body('available', 'Available must be a boolean').isBoolean(),
 ];
 
@@ -59,7 +59,7 @@ export const updatePartValidation = [
     body('name', 'Product name is required').optional().notEmpty(),
     body('description', 'Product description is required').optional().notEmpty(),
     body('price', 'Product price must be a number').optional().isNumeric(),
-    body('imageUrl', 'Invalid URL format for image').optional().isURL(),
+    body('imageUrl', 'Invalid URL format for image').optional(),
     body('available', 'Available must be a boolean').optional().isBoolean(),
 ];
 
