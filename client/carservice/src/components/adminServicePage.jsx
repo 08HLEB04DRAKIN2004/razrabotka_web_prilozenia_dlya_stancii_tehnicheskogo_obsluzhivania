@@ -120,7 +120,7 @@ const ServicesAdminPage = () => {
                         autoFocus
                         margin="dense"
                         name="name"
-                        label="Name"
+                        label="Название"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -130,7 +130,7 @@ const ServicesAdminPage = () => {
                     <TextField
                         margin="dense"
                         name="description"
-                        label="Description"
+                        label="Описание"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -140,7 +140,7 @@ const ServicesAdminPage = () => {
                     <TextField
                         margin="dense"
                         name="price"
-                        label="Price"
+                        label="Цена"
                         type="number"
                         fullWidth
                         variant="standard"
@@ -168,7 +168,7 @@ const ServicesAdminPage = () => {
                         autoFocus
                         margin="dense"
                         name="name"
-                        label="Name"
+                        label="Название"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -178,7 +178,7 @@ const ServicesAdminPage = () => {
                     <TextField
                         margin="dense"
                         name="description"
-                        label="Description"
+                        label="Описание"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -188,7 +188,7 @@ const ServicesAdminPage = () => {
                     <TextField
                         margin="dense"
                         name="price"
-                        label="Price"
+                        label="Цена"
                         type="number"
                         fullWidth
                         variant="standard"

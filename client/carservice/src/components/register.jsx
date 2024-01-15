@@ -75,7 +75,7 @@ const RegistrationPage = () => {
                         autoComplete="tel"
                         autoFocus
                         error={Boolean(errors.phoneNumber?.message)}
-                        helperText={errors.phoneNumber?.message} 
+                        helperText={errors.phoneNumber?.message}
                         {...register('phoneNumber', { required: 'Укажите номер телефона' })}
                     />
                     <TextField

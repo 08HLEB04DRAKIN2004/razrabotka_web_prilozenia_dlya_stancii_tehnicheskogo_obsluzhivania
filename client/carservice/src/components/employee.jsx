@@ -19,7 +19,7 @@ const EmployeesPage = () => {
     return (
         <div>
             <Typography variant="h4" gutterBottom>
-                Our Employees
+                Наши сотрудники
             </Typography>
             <Grid container spacing={3}>
                 {employees.map(employee => (

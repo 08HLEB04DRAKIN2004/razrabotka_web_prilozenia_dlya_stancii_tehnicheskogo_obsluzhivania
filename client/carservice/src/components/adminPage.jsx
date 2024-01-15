@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Tabs, Tab, Grid } from '@mui/material';
+import { useDispatch } from 'react-redux';
+import { Tabs, Tab } from '@mui/material';
 import EmployeeSection from './employeesAdminPage';
 import ServiceSection from './adminServicePage';
 import PartSection from './adminPartsPage';

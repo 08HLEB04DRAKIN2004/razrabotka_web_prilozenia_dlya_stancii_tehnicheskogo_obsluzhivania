@@ -90,8 +90,8 @@ const EmployeesAdminPage = () => {
 
     return (
         <div>
-            <Typography variant="h4" gutterBottom>Employee Management</Typography>
-            <Button color="primary" onClick={handleOpenCreateDialog}>Add Employee</Button>        <Grid container spacing={3}>
+            <Typography variant="h4" gutterBottom>Управление сотрудниками</Typography>
+            <Button color="primary" onClick={handleOpenCreateDialog}>Добавить сотрудника</Button>        <Grid container spacing={3}>
                 {employees.map(employee => (
                     <Grid item key={employee._id} xs={12} sm={6} md={4}>
                         <Card>
@@ -105,8 +105,8 @@ const EmployeesAdminPage = () => {
                                 <Typography variant="h5">{employee.name}</Typography>
                                 <Typography variant="body1">{employee.position}</Typography>
                                 <Typography variant="body2">{employee.specialization}</Typography>
-                                <Button color="primary" onClick={() => handleOpenEditDialog(employee)}>Edit</Button>
-                                <Button color="secondary" onClick={() => handleDelete(employee._id)}>Delete</Button>
+                                <Button color="primary" onClick={() => handleOpenEditDialog(employee)}>Изменить</Button>
+                                <Button color="secondary" onClick={() => handleDelete(employee._id)}>Удалить</Button>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -115,13 +115,13 @@ const EmployeesAdminPage = () => {
 
             {/* Dialog for Creating a New Employee */}
             <Dialog open={openCreateDialog} onClose={handleCloseCreateDialog}>
-                <DialogTitle>Create New Employee</DialogTitle>
+                <DialogTitle>Добавить нового сотрудника</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         name="name"
-                        label="Name"
+                        label="Имя"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -131,7 +131,7 @@ const EmployeesAdminPage = () => {
                     <TextField
                         margin="dense"
                         name="position"
-                        label="Position"
+                        label="Должность"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -141,7 +141,7 @@ const EmployeesAdminPage = () => {
                     <TextField
                         margin="dense"
                         name="specialization"
-                        label="Specialization"
+                        label="Специализация"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -157,20 +157,20 @@ const EmployeesAdminPage = () => {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseCreateDialog}>Cancel</Button>
-                    <Button onClick={() => handleCreateOrUpdateEmployee(true)}>Create</Button>
+                    <Button onClick={handleCloseCreateDialog}>Отмена</Button>
+                    <Button onClick={() => handleCreateOrUpdateEmployee(true)}>Создать</Button>
                 </DialogActions>
             </Dialog>
 
             {/* Dialog for Editing an Employee */}
             <Dialog open={openEditDialog} onClose={handleCloseEditDialog}>
-                <DialogTitle>Edit Employee</DialogTitle>
+                <DialogTitle>Изменить сотрудника</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         name="name"
-                        label="Name"
+                        label="Имя"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -180,7 +180,7 @@ const EmployeesAdminPage = () => {
                     <TextField
                         margin="dense"
                         name="position"
-                        label="Position"
+                        label="Должность"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -190,7 +190,7 @@ const EmployeesAdminPage = () => {
                     <TextField
                         margin="dense"
                         name="specialization"
-                        label="Specialization"
+                        label="Специализация"
                         type
                         ="text"
                         fullWidth
@@ -207,8 +207,8 @@ const EmployeesAdminPage = () => {
                     />
                 </DialogContent>
                 <DialogActions>
-                    <Button onClick={handleCloseEditDialog}>Cancel</Button>
-                    <Button onClick={() => handleCreateOrUpdateEmployee(false)}>Save</Button>
+                    <Button onClick={handleCloseEditDialog}>Отмена</Button>
+                    <Button onClick={() => handleCreateOrUpdateEmployee(false)}>Сохранить</Button>
                 </DialogActions>
             </Dialog>
         </div>

@@ -58,8 +58,8 @@ const AdminPartsPage = () => {
             console.error('Error uploading file:', error);
             return null;
         }
-    }; 
-    
+    };
+
     const handleCreateOrUpdatePart = async (isCreate) => {
         let partData = isCreate ? newPart : currentPart;
 
@@ -84,7 +84,7 @@ const AdminPartsPage = () => {
     return (
         <div>
             <Typography variant="h4" gutterBottom>Управление запчастями</Typography>
-            <Button color="primary" onClick={handleOpenCreateDialog}>Create New Part</Button>
+            <Button color="primary" onClick={handleOpenCreateDialog}>Добавить деталь</Button>
             <Grid container spacing={3}>
                 {parts.map(part => (
                     <Grid item key={part._id} xs={12} sm={6} md={4}>
@@ -100,8 +100,8 @@ const AdminPartsPage = () => {
                                 <Typography variant="body1">{`Price: $${part.price}`}</Typography>
                                 <Typography variant="body2">{part.description}</Typography>
                                 <Typography variant="body2">{`Available: ${part.available ? 'Yes' : 'No'}`}</Typography>
-                                <Button color="primary" onClick={() => handleOpenEditDialog(part)}>Edit</Button>
-                                <Button color="secondary" onClick={() => dispatch(deletePart(part._id))}>Delete</Button>
+                                <Button color="primary" onClick={() => handleOpenEditDialog(part)}>Изменить</Button>
+                                <Button color="secondary" onClick={() => dispatch(deletePart(part._id))}>Удалить</Button>
                             </CardContent>
                         </Card>
                     </Grid>
@@ -110,13 +110,13 @@ const AdminPartsPage = () => {
 
             {/* Dialog for Creating a New Part */}
             <Dialog open={openCreateDialog} onClose={handleCloseCreateDialog}>
-                <DialogTitle>Create New Part</DialogTitle>
+                <DialogTitle>Добавить деталь</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         name="name"
-                        label="Name"
+                        label="Нзавание"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -126,7 +126,7 @@ const AdminPartsPage = () => {
                     <TextField
                         margin="dense"
                         name="description"
-                        label="Description"
+                        label="Описание"
                         type="text"
                         fullWidth
                         multiline
@@ -138,7 +138,7 @@ const AdminPartsPage = () => {
                     <TextField
                         margin="dense"
                         name="price"
-                        label="Price"
+                        label="Цена"
                         type="number"
                         fullWidth
                         variant="standard"
@@ -153,7 +153,7 @@ const AdminPartsPage = () => {
                                 name="available"
                             />
                         }
-                        label="Available"
+                        label="Дотсупность"
                     />
                     <TextField type="file"
                         margin="dense"
@@ -169,13 +169,13 @@ const AdminPartsPage = () => {
             </Dialog>
             {/* Dialog for Editing a Part */}
             <Dialog open={openEditDialog} onClose={handleCloseEditDialog}>
-                <DialogTitle>Edit Part</DialogTitle>
+                <DialogTitle>Изменить деталь</DialogTitle>
                 <DialogContent>
                     <TextField
                         autoFocus
                         margin="dense"
                         name="name"
-                        label="Name"
+                        label="Название"
                         type="text"
                         fullWidth
                         variant="standard"
@@ -185,7 +185,7 @@ const AdminPartsPage = () => {
                     <TextField
                         margin="dense"
                         name="description"
-                        label="Description"
+                        label="Описание"
                         type="text"
                         fullWidth
                         multiline
@@ -197,7 +197,7 @@ const AdminPartsPage = () => {
                     <TextField
                         margin="dense"
                         name="price"
-                        label="Price"
+                        label="Цена"
                         type="number"
                         fullWidth
                         variant="standard"
@@ -212,7 +212,7 @@ const AdminPartsPage = () => {
                                 name="available"
                             />
                         }
-                        label="Available"
+                        label="Доступность"
                     />
                     <TextField
                         type="file"

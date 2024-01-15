@@ -42,7 +42,7 @@ const ServicesPage = () => {
             <Grid container spacing={3}>
                 {services.map(service => (
                     <Grid item key={service._id} xs={12} sm={6} md={4}>
-                        <Card 
+                        <Card
                             sx={{ '&:hover': { boxShadow: 6 } }}
                             onClick={() => handleOpen(service)}
                         >
