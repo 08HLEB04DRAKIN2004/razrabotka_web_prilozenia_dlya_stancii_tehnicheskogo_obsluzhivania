@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchParts, createPart, deletePart, updatePart } from '../redux/slices/parts';
-import { Grid, Card, CardContent, Typography, CardMedia, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField } from '@mui/material';
+import { Grid, Card, CardContent, Typography, CardMedia, Button, Dialog, DialogActions, DialogContent, DialogTitle, TextField, Switch, FormControlLabel } from '@mui/material';
 import axios from '../redux/axios';
 
 const AdminPartsPage = () => {
@@ -37,8 +37,9 @@ const AdminPartsPage = () => {
     };
 
     const handleChange = (e, partType) => {
-        const { name, value } = e.target;
-        partType === 'new' ? setNewPart({ ...newPart, [name]: value }) : setCurrentPart({ ...currentPart, [name]: value });
+        const { name, value, type, checked } = e.target;
+        const newValue = type === 'checkbox' ? checked : value;
+        partType === 'new' ? setNewPart({ ...newPart, [name]: newValue }) : setCurrentPart({ ...currentPart, [name]: newValue });
     };
 
     const handleFileChange = (event) => {
@@ -57,9 +58,7 @@ const AdminPartsPage = () => {
             console.error('Error uploading file:', error);
             return null;
         }
-    };
-
-    const handleCreateOrUpdatePart = async (isCreate) => {
+    }; const handleCreateOrUpdatePart = async (isCreate) => {
         let partData = isCreate ? newPart : currentPart;
 
         if (imageFile) {
@@ -67,22 +66,22 @@ const AdminPartsPage = () => {
             formData.append('image', imageFile);
             const uploadedImageData = await uploadImage(formData);
             if (uploadedImageData && uploadedImageData.url) {
-                const fullImageUrl = `${window.location.protocol}//localhost:4444${uploadedImageData.url}`;
-                partData = { ...partData, imageUrl: fullImageUrl };
+                partData = { ...partData, imageUrl: `${window.location.protocol}//localhost:4444${uploadedImageData.url}` };
             }
         }
 
-        if
-            (isCreate) {
+        if (isCreate) {
             dispatch(createPart(partData));
             handleCloseCreateDialog();
         } else {
             dispatch(updatePart({ id: currentPart._id, updatedData: partData }));
             handleCloseEditDialog();
         }
-    }; return (
+    };
+
+    return (
         <div>
-            <Typography variant="h4" gutterBottom>Admin Parts</Typography>
+            <Typography variant="h4" gutterBottom>Управление запчастями</Typography>
             <Button color="primary" onClick={handleOpenCreateDialog}>Create New Part</Button>
             <Grid container spacing={3}>
                 {parts.map(part => (
@@ -98,6 +97,7 @@ const AdminPartsPage = () => {
                                 <Typography variant="h5">{part.name}</Typography>
                                 <Typography variant="body1">{`Price: $${part.price}`}</Typography>
                                 <Typography variant="body2">{part.description}</Typography>
+                                <Typography variant="body2">{`Available: ${part.available ? 'Yes' : 'No'}`}</Typography>
                                 <Button color="primary" onClick={() => handleOpenEditDialog(part)}>Edit</Button>
                                 <Button color="secondary" onClick={() => dispatch(deletePart(part._id))}>Delete</Button>
                             </CardContent>
@@ -143,8 +143,17 @@ const AdminPartsPage = () => {
                         value={newPart.price}
                         onChange={(e) => handleChange(e, 'new')}
                     />
-                    <TextField
-                        type="file"
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={newPart.available}
+                                onChange={(e) => handleChange(e, 'new')}
+                                name="available"
+                            />
+                        }
+                        label="Available"
+                    />
+                    <TextField type="file"
                         margin="dense"
                         fullWidth
                         variant="standard"
@@ -155,9 +164,7 @@ const AdminPartsPage = () => {
                     <Button onClick={handleCloseCreateDialog}>Cancel</Button>
                     <Button onClick={() => handleCreateOrUpdatePart(true)}>Create</Button>
                 </DialogActions>
-            </Dialog>
-
-            {/* Dialog for Editing a Part */}
+            </Dialog>{/* Dialog for Editing a Part */}
             <Dialog open={openEditDialog} onClose={handleCloseEditDialog}>
                 <DialogTitle>Edit Part</DialogTitle>
                 <DialogContent>
@@ -193,6 +200,16 @@ const AdminPartsPage = () => {
                         variant="standard"
                         value={currentPart?.price}
                         onChange={(e) => handleChange(e, 'edit')}
+                    />
+                    <FormControlLabel
+                        control={
+                            <Switch
+                                checked={currentPart?.available || false}
+                                onChange={(e) => handleChange(e, 'edit')}
+                                name="available"
+                            />
+                        }
+                        label="Available"
                     />
                     <TextField
                         type="file"

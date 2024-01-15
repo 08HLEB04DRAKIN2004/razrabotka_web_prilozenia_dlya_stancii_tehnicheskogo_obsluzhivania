@@ -17,7 +17,9 @@ import OrdersPage from './components/orders';
 import OrderForm from './components/orderForm';
 import Footer from './components/footer';
 import ServicesAdminPage from './components/adminServicePage';
-import AdminPartsPage from './components/AdminPartsPage';
+import AdminPartsPage from './components/adminPartsPage';
+import EmployeesAdminPage from './components/employeesAdminPage';
+import AdminPage from './components/adminPage';
 
 function App() {
   const dispatch = useDispatch();
@@ -44,6 +46,8 @@ function App() {
               <Route path='/order-creating' element={<OrderForm></OrderForm>} />
               <Route path='/adminka' element={<ServicesAdminPage/>} />
               <Route path='/adminka1' element={<AdminPartsPage/>} />
+              <Route path='/adminka2' element={<EmployeesAdminPage/>} />
+              <Route path='/admin-page' element={<AdminPage/>} />
               {!isAuth && <Route path='/registration' element={<RegistrationPage/>} />}
               {!isAuth && <Route path='/login' element={<LoginPage/>} />}
               {isAuth && <Route path="*" element={<Navigate to="/" />} />}

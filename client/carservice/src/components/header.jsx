@@ -23,8 +23,10 @@ const pages = [
     { title: 'Запчасти', path: '/parts' },
     { title: 'Оставить заявку', path: '/order-creating'},
     { title: 'Заказы', path: '/orders', adminOnly: true },
-    { title: 'Админка услуги', path: '/adminka', adminOnly: true },
-    { title: 'Админка запчасти', path: '/adminka1', adminOnly: true },
+    // { title: 'Админка услуги', path: '/adminka', adminOnly: true },
+    // { title: 'Админка запчасти', path: '/adminka1', adminOnly: true },
+    // { title: 'Админка мастера', path: '/adminka2', adminOnly: true },
+    { title: 'Админка', path: '/admin-page', adminOnly: true },
 ];
 
 function Header() {

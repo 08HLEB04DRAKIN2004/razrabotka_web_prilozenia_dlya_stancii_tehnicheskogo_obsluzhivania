@@ -83,12 +83,12 @@ export const createEmployeeValidate = [
     body('name', 'Name is required').notEmpty(),
     body('position', 'Position is required').notEmpty(),
     body('specialization', 'Specialization is required').notEmpty(),
-    body('imageUrl', 'Invalid URL format for image').optional().isURL(),
+    body('imageUrl', 'Invalid URL format for image').optional(),
 ];
 
 export const updateEmployeeValidate = [
     body('name', 'Name is required').optional().notEmpty(),
     body('position', 'Position is required').optional().notEmpty(),
     body('specialization', 'Specialization is required').optional().notEmpty(),
-    body('imageUrl', 'Invalid URL format for image').optional().isURL(),
+    body('imageUrl', 'Invalid URL format for image').optional(),
 ];
