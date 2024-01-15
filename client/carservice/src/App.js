@@ -14,6 +14,8 @@ import ServicesPage from './components/services';
 import EmployeesPage from './components/employee';
 import PartsPage from './components/parts';
 import OrdersPage from './components/orders';
+import OrderForm from './components/orderForm';
+import Footer from './components/footer';
 
 function App() {
   const dispatch = useDispatch();
@@ -37,13 +39,14 @@ function App() {
               <Route path='/employees' element={<EmployeesPage></EmployeesPage>} />
               <Route path='/parts' element={<PartsPage></PartsPage>} />
               <Route path='/orders' element={<OrdersPage></OrdersPage>} />
+              <Route path='/order-creating' element={<OrderForm></OrderForm>} />
               {!isAuth && <Route path='/registration' element={<RegistrationPage/>} />}
               {!isAuth && <Route path='/login' element={<LoginPage/>} />}
               {isAuth && <Route path="*" element={<Navigate to="/" />} />}
               {!isAuth && <Route path="*" element={<Navigate to="/login" />} />}
           </Routes>
         </Box>
-        {/* <Footer></Footer> */}
+        <Footer></Footer>
       </Box>
     </div>
   );
