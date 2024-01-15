@@ -21,6 +21,7 @@ const pages = [
     { title: 'Услуги', path: '/services' },
     { title: 'Мастера', path: '/employees' },
     { title: 'Запчасти', path: '/parts' },
+    { title: 'Оставить заявку', path: '/order-creating'},
     { title: 'Заказы', path: '/orders', adminOnly: true },
     // { title: 'Управление категориями', path: '/categories', adminOnly: true },
 ];
