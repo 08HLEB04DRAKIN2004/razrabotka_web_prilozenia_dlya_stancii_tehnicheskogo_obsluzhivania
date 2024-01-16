@@ -53,7 +53,6 @@ export const update = async (req, res) => {
                 _id: orderId,
             },
             {
-                user: req.userId,
                 car: req.body.car,
                 description: req.body.description,
                 status: req.body.status,
