@@ -8,8 +8,9 @@ import { Card, Typography, Table, TableBody, TableCell, TableContainer, TableHea
 const UserProfile = () => {
     const dispatch = useDispatch();
     const user = useSelector((state) => state.auth.data);
-    const orders = useSelector((state) => state.orders.orders);
+    const allOrders = useSelector((state) => state.orders.orders);
     const reviews = useSelector((state) => state.reviews.reviews);
+    const [userOrders, setUserOrders] = useState([]);
     const [openDialog, setOpenDialog] = useState(false);
     const [currentReview, setCurrentReview] = useState({ orderId: '', text: '', rating: 0 });
 
@@ -18,6 +19,13 @@ const UserProfile = () => {
         dispatch(fetchOrders());
         dispatch(fetchAllReviews());
     }, [dispatch]);
+
+    useEffect(() => {
+        if (user && allOrders.length > 0) {
+            const filteredOrders = allOrders.filter(order => order.user._id === user._id);
+            setUserOrders(filteredOrders);
+        }
+    }, [user, allOrders]);
 
     const handleOpenDialog = (orderId) => {
         setCurrentReview({ ...currentReview, orderId });
@@ -69,7 +77,7 @@ const UserProfile = () => {
                             <TableCell align="right">Действия</TableCell>
                         </TableRow>
                     </TableHead>                <TableBody>
-                        {orders.map((order) => (
+                        {userOrders.map((order) => (
                             <React.Fragment key={order._id}>
                                 <TableRow>
                                     <TableCell component="th" scope="row">
@@ -90,7 +98,7 @@ const UserProfile = () => {
                                         )}
                                     </TableCell>
                                 </TableRow>
-                                {order.status === 'completed' && (
+                                {userOrders.status === 'completed' && (
                                     <TableRow>
                                         <TableCell colSpan={5}>
                                             <Typography variant="subtitle2">Ваш отзыв:</Typography>

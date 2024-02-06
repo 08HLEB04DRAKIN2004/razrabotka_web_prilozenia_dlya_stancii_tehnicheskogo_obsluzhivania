@@ -92,70 +92,70 @@ app.post('/parts/create',
     handleValidationErrors,
     partsController.create
 );
-app.delete('/parts/:id/delete', 
-    adminOnlyAuth, 
+app.delete('/parts/:id/delete',
+    adminOnlyAuth,
     partsController.remove
 );
-app.patch('/parts/:id/update', 
-    adminOnlyAuth, 
-    updatePartValidation, 
-    handleValidationErrors, 
+app.patch('/parts/:id/update',
+    adminOnlyAuth,
+    updatePartValidation,
+    handleValidationErrors,
     partsController.update
 );
-app.get('/parts/:id', 
+app.get('/parts/:id',
     partsController.getOne
 );
-app.get('/parts', 
+app.get('/parts',
     partsController.getAll
 );
 
 //orders
-app.post('/orders/create', 
-    allRolesAuth, 
-    createOrderValidation, 
-    handleValidationErrors, 
+app.post('/orders/create',
+    allRolesAuth,
+    createOrderValidation,
+    handleValidationErrors,
     orderController.create
 );
-app.delete('/orders/:id/delete', 
-    adminOnlyAuth, 
+app.delete('/orders/:id/delete',
+    adminOnlyAuth,
     orderController.remove
 );
-app.patch('/orders/:id/update', 
-    adminOnlyAuth, 
-    updateOrderValidation, 
-    handleValidationErrors, 
+app.patch('/orders/:id/update',
+    adminOnlyAuth,
+    updateOrderValidation,
+    handleValidationErrors,
     orderController.update
 );
-app.get('/orders/:id', 
-    allRolesAuth, 
+app.get('/orders/:id',
+    allRolesAuth,
     orderController.getOne
 );
-app.get('/orders', 
-    adminOnlyAuth, 
+app.get('/orders',
+    allRolesAuth,
     orderController.getAll
 );
 
 //employees
-app.post('/employees/create', 
-    adminOnlyAuth, 
-    createEmployeeValidate, 
-    handleValidationErrors, 
+app.post('/employees/create',
+    adminOnlyAuth,
+    createEmployeeValidate,
+    handleValidationErrors,
     employeeController.create
 );
-app.delete('/employees/:id/delete', 
-    adminOnlyAuth, 
+app.delete('/employees/:id/delete',
+    adminOnlyAuth,
     employeeController.remove
 );
-app.patch('/employees/:id/update', 
-    adminOnlyAuth, 
-    updateEmployeeValidate, 
-    handleValidationErrors, 
+app.patch('/employees/:id/update',
+    adminOnlyAuth,
+    updateEmployeeValidate,
+    handleValidationErrors,
     employeeController.update
 );
-app.get('/employees/:id', 
+app.get('/employees/:id',
     employeeController.getOne
 );
-app.get('/employees', 
+app.get('/employees',
     employeeController.getAll
 );
 
