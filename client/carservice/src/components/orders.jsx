@@ -86,49 +86,55 @@ const OrdersPage = () => {
             </TableContainer>
             <Dialog open={openDialog} onClose={handleDialogClose} maxWidth="md" fullWidth>
                 <DialogTitle>Детали заказа</DialogTitle>
-                <TableBody>
-                    <TableRow>
-                        <TableCell>ID заказа</TableCell>
-                        <TableCell>{selectedOrder._id}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Пользователь</TableCell>
-                        <TableCell>{selectedOrder.user ? selectedOrder.user.userName : 'Неизвестный'}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Контакты</TableCell>
-                        <TableCell>{selectedOrder.user ? selectedOrder.user.phoneNumber : 'Неизвестный'}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Авто</TableCell>
-                        <TableCell>{selectedOrder.car}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Описание</TableCell>
-                        <TableCell>{selectedOrder.description}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Цена</TableCell>
-                        <TableCell>{selectedOrder.price}</TableCell>
-                    </TableRow>
-                    <TableRow>
-                        <TableCell>Статус</TableCell>
-                        <TableCell>{selectedOrder.status}</TableCell>
-                    </TableRow>
-                </TableBody>
-                <DialogContent>
-                    <TextField label="Цена" type="number" fullWidth margin="normal" value={editPrice} onChange={(e) => setEditPrice(e.target.value)} />
-                    <Select fullWidth value={editStatus} onChange={(e) => setEditStatus(e.target.value)} margin="normal">
-                        <MenuItem value="pending">Pending</MenuItem>
-                        <MenuItem value="inProgress">In Progress</MenuItem>
-                        <MenuItem value="completed">Completed</MenuItem>
-                        <MenuItem value="declined">Declined</MenuItem>
-                    </Select>
-                </DialogContent>
-                <DialogActions>
-                    <Button onClick={handleDialogClose}>Отмена</Button>
-                    <Button onClick={handleSaveChanges}>Сохранить</Button>
-                </DialogActions>
+                {selectedOrder && (
+                    <>
+                        <DialogContent>
+                            <Table>
+                                <TableBody>
+                                    <TableRow>
+                                        <TableCell>ID заказа</TableCell>
+                                        <TableCell>{selectedOrder._id}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Пользователь</TableCell>
+                                        <TableCell>{selectedOrder.user ? selectedOrder.user.userName : 'Неизвестный'}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Контакты</TableCell>
+                                        <TableCell>{selectedOrder.user ? selectedOrder.user.phoneNumber : 'Неизвестный'}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Авто</TableCell>
+                                        <TableCell>{selectedOrder.car}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Описание</TableCell>
+                                        <TableCell>{selectedOrder.description}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Цена</TableCell>
+                                        <TableCell>{selectedOrder.price}</TableCell>
+                                    </TableRow>
+                                    <TableRow>
+                                        <TableCell>Статус</TableCell>
+                                        <TableCell>{selectedOrder.status}</TableCell>
+                                    </TableRow>
+                                </TableBody>
+                            </Table>
+                            <TextField label="Цена" type="number" fullWidth margin="normal" value={editPrice} onChange={(e) => setEditPrice(e.target.value)} />
+                            <Select fullWidth value={editStatus} onChange={(e) => setEditStatus(e.target.value)} margin="normal">
+                                <MenuItem value="pending">Pending</MenuItem>
+                                <MenuItem value="inProgress">In Progress</MenuItem>
+                                <MenuItem value="completed">Completed</MenuItem>
+                                <MenuItem value="declined">Declined</MenuItem>
+                            </Select>
+                        </DialogContent>
+                        <DialogActions>
+                            <Button onClick={handleDialogClose}>Отмена</Button>
+                            <Button onClick={handleSaveChanges}>Сохранить</Button>
+                        </DialogActions>
+                    </>
+                )}
             </Dialog>
         </div>
     );
