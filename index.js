@@ -34,7 +34,7 @@ import {
 } from './validations.js';
 
 mongoose
-    .connect('mongodb+srv://admin:Hesus2016@cluster0.vgtv5yo.mongodb.net/CarService')
+    .connect('mongodb+srv://glebdrakin1:jqzWZiPcjn4fqXbY@cluster0.s4jomw4.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0')
     .then(() => console.log('DB OK'))
     .catch((err) => console.log('DB ERROR', err));
 
@@ -158,6 +158,34 @@ app.get('/employees/:id',
 app.get('/employees',
     employeeController.getAll
 );
+app.post('/auth/create-admin', adminOnlyAuth, async (req, res) => {
+    try {
+        const { userName, phoneNumber, password, role } = req.body;
+
+        // Check if the role is set to admin
+        if (role !== 'admin') {
+            return res.status(400).json({ message: 'Invalid role for admin creation' });
+        }
+
+        // Hash the password before saving it
+        const passwordHash = await bcrypt.hash(password, 10);
+
+        // Create a new user with the role of admin
+        const newUser = new User({
+            userName,
+            phoneNumber,
+            passwordHash,
+            role,
+        });
+
+        await newUser.save();
+
+        res.json({ message: 'Admin created successfully', user: newUser });
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+});
 
 app.listen(4444, (err) => {
     if (err) {
